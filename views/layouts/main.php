@@ -79,6 +79,12 @@ AppAsset::register($this);
                                 'label' => 'Movie', 'url' => ['/movie/index']
                             ], 
                             [
+                                'label' => 'Download Movie', 'url' => ['/movie/export']
+                            ],
+                            [
+                                'label' => 'Import Movie', 'url' => ['/movie/import']
+                            ], 
+                            [
                                 'label' => 'Dynamic Data Chart', 'url' => ['/movie/chart']
                             ]
                         ]
