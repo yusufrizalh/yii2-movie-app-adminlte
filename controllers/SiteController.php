@@ -110,11 +110,24 @@ class SiteController extends Controller
      *
      * @return Response
      */
+    
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        //return $this->goHome();
+        return $this->redirect(Yii::$app->user->loginUrl);
+    }
+    
+    public function beforeAction($action){
+        if (parent::beforeAction($action)) {
+            // change layout for error action
+            if ($action->id=='login')
+                 $this->layout = 'login';
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "kartik-v/yii2-widgets": "*",
         "miloschuman/yii2-highcharts-widget": "^7.1",
-        "phpoffice/phpspreadsheet": "^1.9"
+        "phpoffice/phpspreadsheet": "^1.9",
+        "dmstr/yii2-adminlte-asset": "2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

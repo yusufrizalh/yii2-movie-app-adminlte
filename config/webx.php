@@ -9,34 +9,11 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'id', 
     'timezone' => 'Asia/Jakarta', 
-    'layout' => 'column2', 
-    'layoutPath' => '@app/themes/adminLTE/layouts', 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        
-        'urlManager' => [
-            'class' => 'yii\web\urlManager', 
-            'enablePrettyUrl' => 'true', 
-            'showScriptName' => 'false', 
-            'rules' => [
-                '' => 'site/index', 
-                '<action:(index|login|logout)>'=>'site/<action>',
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
-            ], 
-        ], 
-        
-        'view' => [
-            'theme' => [
-                'pathMap' => ['@app/views' => '@app/themes/adminLTE'], 
-                'baseUrl' => '@web/../themes/adminLTE', 
-            ], 
-        ], 
-        
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'n16TJXtDd2KUgMcEWzFc_dCnm4QAHpk0',
@@ -68,12 +45,12 @@ $config = [
             ],
         ],
         'db' => $db,
-//        'urlManager' => [
-//            'enablePrettyUrl' => true,
-//            'showScriptName' => false,
-//            'rules' => [
-//            ],
-//        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
         
     ],
     'params' => $params,
@@ -91,14 +68,6 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'generators' => [
-            'crud' => [
-                'class' => 'yii\gii\generators\crud\Generator', 
-                'templates' => [
-                    'custom' => '@vendor/bmsrox/yii-adminlte-crud-template', 
-                ]
-            ]
-        ]
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
