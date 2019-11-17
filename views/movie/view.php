@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Movie */
@@ -36,7 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'director',
             'rating',
             'duration',
-            'cover',
+            [
+                'attribute' => 'cover',
+                'format' => 'html',
+                'value' => function($data){
+                    return Html::img(\yii\helpers\Url::base(true).$data->cover, [
+                        'width' => '2000',
+                        'class' => "img-thumbnail"
+                    ]);
+                }
+            ]
         ],
     ]) ?>
 

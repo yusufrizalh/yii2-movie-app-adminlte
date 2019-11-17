@@ -144,7 +144,21 @@ class MovieController extends Controller
     {
         $model = new Movie();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()) {
+                $file = \yii\web\UploadedFile::getInstance($model, "cover");
+                if($file){
+                    $filename = "/movies/" . $file->baseName . "." . $file->extension;
+                    $file->saveAs(Yii::getAlias("@webroot").$filename);
+                    $model->cover = $filename;
+                    $model->save();
+                }
+                Yii::$app->session->setFlash('success', 'berhasil disimpan');
+            }
+            else{
+                Yii::$app->session->setFlash('error', 'gagal disimpan');
+            }
+                
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -163,10 +177,30 @@ class MovieController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        
+        $old_cover = $model->cover;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->cover = $old_cover;
+            if($model->save()) {
+                $file = \yii\web\UploadedFile::getInstance($model, "cover");
+                if($file){
+                    $filename = "@app/themes/adminLTE/movies/" . $file->baseName . "." . $file->extension;
+                    $file->saveAs(Yii::getAlias("@webroot").$filename);
+                    $model->cover = $filename;
+                    $model->save();
+                }
+                Yii::$app->session->setFlash('success', 'berhasil disimpan');
+            }
+            else{
+                Yii::$app->session->setFlash('error', 'gagal disimpan');
+            }
+                
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        }
 
         return $this->render('update', [
             'model' => $model,
@@ -183,6 +217,12 @@ class MovieController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        if($model->delete()) {
+            Yii::$app->session->setFlash('success', 'berhasil dihapus');
+        }
+        else{
+            Yii::$app->session->setFlash('error', 'gagal dihapus');
+        }
 
         return $this->redirect(['index']);
     }
