@@ -10,16 +10,16 @@ use app\themes\adminLTE\components\ThemeNav;
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
-     <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user_accounts.png" class="img-circle" alt="User Image" />
-                </div>
-                <div class="pull-left info">
-                    <p>
-                      <?php
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/user_accounts.png" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+                <p>
+                    <?php
                           $info[] = Yii::t('app','InixAdmin');
 
                           if(isset(Yii::$app->user->identity->username))
@@ -27,13 +27,13 @@ use app\themes\adminLTE\components\ThemeNav;
 
                           echo implode(', ', $info);
                       ?>
-                    </p>
-                    <a><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
+                </p>
+                <a><i class="fa fa-circle text-success"></i> Online</a>
             </div>
+        </div>
 
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <?php
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <?php
                 echo Menu::widget([
                   'encodeLabels'=>false,
                   'options' => [
@@ -58,8 +58,12 @@ use app\themes\adminLTE\components\ThemeNav;
                                 ['label' => 'Line Chart', 'url' => ['/booking/linechart']], 
                                 ['label' => 'Column Chart', 'url' => ['/booking/columnchart']], 
                                 ['label' => 'Pie Chart', 'url' => ['/booking/piechart']],
+                                ['label' => 'Rating Chart', 'url' => ['/booking/jsonchart']],
                           ]], 
-                          ['label' => ThemeNav::link(' Person', 'fa fa-dashboard'), 'url' => ['/person/index']],
+                          ['label' => ThemeNav::link(' Person', 'fa fa-dashboard'), 'items' => [
+                                  ['label' => 'Person', 'url' => ['/person/index']], 
+                                  ['label' => 'Gender Chart', 'url' => ['/person/genderchart']], 
+                          ]],
                           ['label' => ThemeNav::link(' Login', 'fa fa-dashboard'), 'url' => ['/site/login']],
                           ['label' => ThemeNav::link(' Register', 'fa fa-dashboard'), 'url' => ['/site/register']],
                       ]], 
@@ -67,17 +71,17 @@ use app\themes\adminLTE\components\ThemeNav;
                 ]);
             ?>
 
-        </section>
-  <!-- /.sidebar -->
+    </section>
+    <!-- /.sidebar -->
 </aside>
 
 <!-- Right side column. Contains the navbar and content of the page -->
 <div class="content-wrapper">
 
-   <!-- Content Header (Page header) -->
-   <section class="content-header">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
         <h1> <?php echo Html::encode($this->title); ?> </h1>
-           <?= Breadcrumbs::widget([
+        <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
     </section>

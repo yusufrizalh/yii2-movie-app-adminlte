@@ -1,5 +1,5 @@
 <?php
-use \miloschuman\highcharts\Highcharts;
+use \miloschuman\highcharts\Highcharts; 
 
 echo Highcharts::widget([
         'options' => [

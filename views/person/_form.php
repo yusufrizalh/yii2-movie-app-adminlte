@@ -26,21 +26,21 @@ use kartik\widgets\SwitchInput;
     
     <?= $form->field($model, 'birth_day')->textInput(['maxlength' => true]) ?>
 
-    <?=
-        $form->field($model, 'gender')->widget(SwitchInput::classname(), [
-            'type' => SwitchInput::CHECKBOX, 
-            'pluginOptions' => [
-                'handleWidth' => 60,
-                'onText' => 'Pria', 
-                'offText' => 'Wanita'
-            ]
-        ]);
-    ?>
-    
 <!--
+    <?php
+//        echo $form->field($model, 'gender')->widget(SwitchInput::classname(), [
+//            'type' => SwitchInput::CHECKBOX, 
+//            'pluginOptions' => [
+//                'handleWidth' => 60,
+//                'onText' => 'Pria', 
+//                'offText' => 'Wanita'
+//            ]
+//        ]);
+    ?>
+-->
+    
     <?= $form->field($model, 'gender')->dropDownList(['Laki-Laki' => 'Laki-Laki', 'Perempuan' => 'Perempuan'], 
                                                     ['prompt' => '- Pilih Gender -']) ?>
--->
     
     <!--<?= $form->field($model, 'gender')->radioList(['Laki-Laki' => 'Laki-Laki', 'Perempuan' => 'Perempuan']) ?>-->
 

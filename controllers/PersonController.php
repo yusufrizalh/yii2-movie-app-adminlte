@@ -124,4 +124,13 @@ class PersonController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    
+    // membuka chart menghitung jumlah gender 
+    public function actionGenderchart() {
+        $data1 = Yii::$app->db->createCommand('select gender, count(*) as jumlah from person group by gender order by gender')->queryAll();
+        
+        return $this->render('genderchart', [
+            'dgrafik' => $data1
+        ]);
+    }
 }

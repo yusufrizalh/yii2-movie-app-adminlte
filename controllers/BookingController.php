@@ -58,6 +58,17 @@ class BookingController extends Controller
     public function actionPiechart() {
         return $this->render('piechart');
     }
+    
+    // membuka halaman highchart (data json)
+    public function actionJsonchart() {
+        $data = Yii::$app->db->createCommand('select title, rating from movie order by title')->queryAll();
+        
+        $data1 = Yii::$app->db->createCommand('select gender, count(*) as jumlah from person group by gender order by gender')->queryAll();
+        
+        return $this->render('jsonchart', [
+            'dgrafik' => $data
+        ]);
+    }
 
     /**
      * Displays a single Booking model.
